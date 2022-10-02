@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
-function callback() {
+function Callback() {
 	const [artistList, setArtistList] = useState([]);
 
 	useEffect(() => {
@@ -59,4 +59,4 @@ function callback() {
 	);
 }
 
-export default callback;
+export default Callback;
