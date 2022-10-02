@@ -2,13 +2,37 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
+import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
-var client_id = 'CLIENT_ID'; // Your client id
-var client_secret = 'CLIENT_SECRET'; // Your secret
-var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
+var client_id = '1d811c670fc14564acea1cd503395d22'; // Your client id
+var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 
 export default function Home() {
+	const generateRandomString = (length) => {
+		var result = '';
+		var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		var charactersLength = characters.length;
+		for (var i = 0; i < length; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		}
+		return result;
+	};
+
+	const loginSpotify = () => {
+		var state = generateRandomString(16);
+		var scope = 'user-read-private user-read-email user-top-read';
+
+		var url = 'https://accounts.spotify.com/authorize';
+		url += '?response_type=token';
+		url += '&client_id=' + encodeURIComponent(client_id);
+		url += '&scope=' + encodeURIComponent(scope);
+		url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+		url += '&state=' + encodeURIComponent(state);
+
+		window.location = url;
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -28,7 +52,8 @@ export default function Home() {
 						border: '1px solid white',
 						padding: '10px 20px',
 						cursor: 'pointer',
-					}}>
+					}}
+					onClick={() => loginSpotify()}>
 					Login in Spotify
 				</div>
 			</main>
