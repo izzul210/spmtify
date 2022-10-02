@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 
 var client_id = '1d811c670fc14564acea1cd503395d22'; // Your client id
-var redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
+var redirect_uri = 'https://spmtify.vercel.app/callback'; // Your redirect uri
 
 export default function Home() {
 	const generateRandomString = (length) => {
